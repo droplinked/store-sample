@@ -1,0 +1,175 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --radius: var(--radius);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-blob: blob 7s infinite;
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  --animate-shimmer: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-200%) skewX(-20deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-20deg);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a; /* Slate 900 - deep, clean */
+
+  /* Minimal, clean primary */
+  --primary: #0f172a; /* Slate 900 - solid, professional */
+  --primary-foreground: #ffffff;
+  --primary-light: #f1f5f9; /* Slate 100 */
+
+  /* Neutral secondary */
+  --secondary: #64748b; /* Slate 500 */
+  --secondary-light: #e2e8f0; /* Slate 200 */
+
+  /* Subtle accent - only for highlights */
+  --accent: #0f172a; /* Slate 900 - minimal */
+  --accent-light: #f8fafc; /* Slate 50 */
+
+  --muted: #f8fafc; /* Slate 50 */
+  --muted-foreground: #64748b; /* Slate 500 */
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --border: #e2e8f0; /* Slate 200 */
+
+  --radius: 0.75rem; /* 12px - slightly smaller, cleaner */
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Prevent browser extensions (like Dark Reader) from causing hydration mismatches */
+svg[data-darkreader-inline-stroke],
+svg[data-darkreader-inline-fill] {
+  /* These rules help prevent extensions from modifying SVGs */
+  isolation: isolate;
+}
+
+/* Accessibility: Ensure focus is visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Minimal Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-slate-200 shadow-sm;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-md;
+  }
+
+  .text-gradient {
+    @apply text-slate-900;
+  }
+
+  .bg-gradient-primary {
+    @apply bg-slate-900;
+  }
+
+  .text-gradient-primary {
+    @apply text-slate-900;
+  }
+
+  .bg-secondary {
+    @apply bg-slate-600;
+  }
+
+  .text-secondary {
+    @apply text-slate-600;
+  }
+
+  .hover-secondary {
+    @apply hover:bg-slate-700 hover:text-white;
+  }
+}
