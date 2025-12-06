@@ -9,11 +9,10 @@
 
 'use client';
 
-import { ProductSKU } from '@/lib/types';
-import { useMemo, useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import AttributeButton from './AttributeButton';
 import { SKUSelectorProps } from './types';
 import { groupSkusByAttributes } from './utils/grouping';
-import AttributeButton from './AttributeButton';
 
 export default function SKUSelector({
   skus,
@@ -27,13 +26,26 @@ export default function SKUSelector({
   >({});
 
   useEffect(() => {
+    let cancelled = false;
+
     if (selectedSku) {
       const attrs: Record<string, string> = {};
       selectedSku.attributes.forEach(attr => {
         attrs[attr.key] = attr.value;
       });
-      setSelectedAttributes(attrs);
+
+      // Defer the state update to avoid calling setState synchronously inside the effect,
+      // which can cause cascading renders; using a microtask keeps the update but defers it.
+      Promise.resolve().then(() => {
+        if (!cancelled) {
+          setSelectedAttributes(attrs);
+        }
+      });
     }
+
+    return () => {
+      cancelled = true;
+    };
   }, [selectedSku]);
 
   const handleAttributeChange = (key: string, value: string) => {
@@ -110,7 +122,6 @@ export default function SKUSelector({
                 return (
                   <AttributeButton
                     key={option.value}
-                    attributeKey={group.key}
                     attributeTitle={group.title}
                     option={option}
                     isSelected={isSelected}

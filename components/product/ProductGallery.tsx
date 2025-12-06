@@ -58,7 +58,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
             <button
               key={image.id || index}
               onClick={() => setSelectedImageIndex(index)}
-              className={`relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-lg sm:rounded-xl border-2 transition-all focus:outline-none focus:ring-2 sm:focus:ring-4 focus:ring-orange-500 ${
+              className={`relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-lg sm:rounded-xl border-2 transition-all ${
                 selectedImageIndex === index
                   ? 'border-primary shadow-md scale-105'
                   : 'border-transparent hover:border-gray-200'

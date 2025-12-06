@@ -20,6 +20,12 @@ import {
 
 const CART_STORAGE_KEY = 'cart_id';
 
+// Helper function to extract status code from error
+const getErrorStatusCode = (error: unknown): number | undefined => {
+  const errorWithStatus = error as { statusCode?: number; status?: number };
+  return errorWithStatus?.statusCode || errorWithStatus?.status;
+};
+
 // Create context
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -55,7 +61,7 @@ export function CartProvider({ children }: CartProviderProps) {
     initializeCart();
   }, [hasCheckedCart]);
 
-  const createNewCart = async (): Promise<string> => {
+  const createNewCart = useCallback(async (): Promise<string> => {
     // Try to get shopId from shop store first, fallback to env
     const shopStore = (await import('@/lib/store/shopStore')).useShopStore.getState();
     const shopId = shopStore.shop?.id || process.env.NEXT_PUBLIC_SHOP_ID;
@@ -79,7 +85,7 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem(CART_STORAGE_KEY, cartData.id);
     setCart(cartData);
     return cartData.id;
-  };
+  }, []);
 
   const addToCart = useCallback(
     async (params: { skuId: string; quantity: number }) => {
@@ -105,8 +111,24 @@ export function CartProvider({ children }: CartProviderProps) {
           }
         }
 
-        const cartData = await addProductToCart(cartId, params);
-        setCart(cartData);
+        // Try to add product to cart
+        try {
+          const cartData = await addProductToCart(cartId, params);
+          setCart(cartData);
+        } catch (error) {
+          // If cart not found (404), create a new cart and retry
+          const statusCode = getErrorStatusCode(error);
+          
+          if (statusCode === 404) {
+            localStorage.removeItem(CART_STORAGE_KEY);
+            const newCartId = await createNewCart();
+            const cartData = await addProductToCart(newCartId, params);
+            setCart(cartData);
+          } else {
+            throw error;
+          }
+        }
+        
         toast.success('Added to cart!');
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
@@ -116,7 +138,7 @@ export function CartProvider({ children }: CartProviderProps) {
         throw error;
       }
     },
-    [cart]
+    [cart, createNewCart]
   );
 
   const updateQuantity = useCallback(async (skuId: string, quantity: number) => {
@@ -127,7 +149,16 @@ export function CartProvider({ children }: CartProviderProps) {
       const cartData = await updateCartProductQuantity(cartId, skuId, quantity);
       setCart(cartData);
     } catch (error) {
-      toast.error('Failed to update quantity');
+      // If cart not found (404), clear the invalid cart
+      const statusCode = getErrorStatusCode(error);
+      
+      if (statusCode === 404) {
+        localStorage.removeItem(CART_STORAGE_KEY);
+        setCart(null);
+        toast.error('Cart expired. Please add items again.');
+      } else {
+        toast.error('Failed to update quantity');
+      }
       throw error;
     }
   }, []);
@@ -141,7 +172,16 @@ export function CartProvider({ children }: CartProviderProps) {
       setCart(cartData);
       toast.success('Item removed');
     } catch (error) {
-      toast.error('Failed to remove item');
+      // If cart not found (404), clear the invalid cart
+      const statusCode = getErrorStatusCode(error);
+      
+      if (statusCode === 404) {
+        localStorage.removeItem(CART_STORAGE_KEY);
+        setCart(null);
+        toast.error('Cart expired. Please add items again.');
+      } else {
+        toast.error('Failed to remove item');
+      }
       throw error;
     }
   }, []);

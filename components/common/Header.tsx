@@ -18,7 +18,7 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-slate-900 text-xl font-bold tracking-wider hover:text-orange-600 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-2 py-1"
+          className="text-slate-900 text-xl font-bold tracking-wider hover:text-orange-600 transition-colors rounded-lg px-2 py-1"
           aria-label="Store home"
         >
           STORE
@@ -28,25 +28,25 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-8" role="navigation">
           <Link
             href="/products"
-            className="text-slate-600 hover:text-slate-900 transition-colors font-medium focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors font-medium rounded-lg px-3 py-2"
           >
             Shop
           </Link>
           <Link
             href="#"
-            className="text-slate-600 hover:text-slate-900 transition-colors font-medium focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors font-medium rounded-lg px-3 py-2"
           >
             Collections
           </Link>
           <Link
             href="#"
-            className="text-slate-600 hover:text-slate-900 transition-colors font-medium focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors font-medium rounded-lg px-3 py-2"
           >
             About
           </Link>
           <Link
             href="#"
-            className="text-slate-600 hover:text-slate-900 transition-colors font-medium focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors font-medium rounded-lg px-3 py-2"
           >
             Contact
           </Link>
@@ -55,20 +55,20 @@ export default function Header() {
         {/* Actions */}
         <div className="flex items-center gap-6">
           <button
-            className="text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg p-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors rounded-lg p-2"
             aria-label="Search products"
           >
             <Search size={20} aria-hidden="true" />
           </button>
           <button
-            className="text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg p-2"
+            className="text-slate-600 hover:text-slate-900 transition-colors rounded-lg p-2"
             aria-label="User account"
           >
             <User size={20} aria-hidden="true" />
           </button>
           <Link
             href="/cart"
-            className="relative text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg p-2"
+            className="relative text-slate-600 hover:text-slate-900 transition-colors rounded-lg p-2"
             aria-label={`Shopping cart with ${itemCount} item${itemCount !== 1 ? 's' : ''}`}
           >
             <ShoppingBag size={20} aria-hidden="true" />

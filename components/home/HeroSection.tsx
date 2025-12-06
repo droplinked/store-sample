@@ -99,13 +99,13 @@ export function HeroSection() {
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-8 py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2"
+                className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-8 py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors"
               >
                 Start Exploring
               </Link>
               <Link
                 href="#featured"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-slate-200 px-8 py-4 text-base font-medium text-slate-900 hover:border-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2"
+                className="inline-flex items-center justify-center rounded-xl border-2 border-slate-200 px-8 py-4 text-base font-medium text-slate-900 hover:border-slate-900 transition-colors"
               >
                 View Collection
               </Link>

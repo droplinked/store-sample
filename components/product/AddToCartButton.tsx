@@ -54,7 +54,7 @@ export default function AddToCartButton({
       >
         <button
           onClick={decrement}
-          className="h-10 w-10 rounded-full text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all text-xl font-medium focus:outline-none focus:ring-4 focus:ring-orange-500"
+          className="h-10 w-10 rounded-full text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all text-xl font-medium"
           aria-label="Decrease quantity"
           type="button"
         >
@@ -69,7 +69,7 @@ export default function AddToCartButton({
         </span>
         <button
           onClick={increment}
-          className="h-10 w-10 rounded-full text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all text-xl font-medium focus:outline-none focus:ring-4 focus:ring-orange-500"
+          className="h-10 w-10 rounded-full text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all text-xl font-medium"
           aria-label="Increase quantity"
           type="button"
         >
@@ -82,7 +82,7 @@ export default function AddToCartButton({
         whileTap={{ scale: 0.98 }}
         onClick={handleAddToCart}
         disabled={isAdding}
-        className="flex-1 rounded-xl bg-slate-900 py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed relative overflow-hidden after:absolute after:inset-0 after:-translate-x-full after:bg-linear-to-r after:from-transparent after:via-white/20 after:to-transparent after:animate-shimmer focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2"
+        className="flex-1 rounded-xl bg-slate-900 py-4 text-base font-medium text-white hover:bg-slate-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed relative overflow-hidden after:absolute after:inset-0 after:-translate-x-full after:bg-linear-to-r after:from-transparent after:via-white/20 after:to-transparent after:animate-shimmer"
         aria-label={`Add ${quantity} ${quantity === 1 ? 'item' : 'items'} to cart`}
         type="button"
       >

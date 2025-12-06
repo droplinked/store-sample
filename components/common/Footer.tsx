@@ -22,7 +22,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   New Arrivals
                 </Link>
@@ -30,7 +30,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Best Sellers
                 </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Collections
                 </Link>
@@ -46,7 +46,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Sale
                 </Link>
@@ -65,7 +65,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Help Center
                 </Link>
@@ -73,7 +73,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Track Order
                 </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Shipping
                 </Link>
@@ -89,7 +89,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Returns
                 </Link>
@@ -108,7 +108,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   About Us
                 </Link>
@@ -116,7 +116,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Careers
                 </Link>
@@ -124,7 +124,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Press
                 </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                 >
                   Sustainability
                 </Link>
@@ -151,7 +151,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                   aria-label="Follow us on Instagram"
                 >
                   Instagram
@@ -160,7 +160,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                   aria-label="Follow us on Twitter"
                 >
                   Twitter
@@ -169,7 +169,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                   aria-label="Follow us on LinkedIn"
                 >
                   LinkedIn
@@ -178,7 +178,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-1 py-1"
+                  className="block text-slate-600 hover:text-slate-900 transition-colors rounded px-1 py-1"
                   aria-label="Subscribe to our YouTube channel"
                 >
                   YouTube
@@ -195,13 +195,13 @@ export default function Footer() {
           <nav className="flex gap-8" aria-label="Legal">
             <Link
               href="#"
-              className="text-slate-500 hover:text-slate-900 transition-colors text-sm focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-2 py-1"
+              className="text-slate-500 hover:text-slate-900 transition-colors text-sm rounded px-2 py-1"
             >
               Privacy Policy
             </Link>
             <Link
               href="#"
-              className="text-slate-500 hover:text-slate-900 transition-colors text-sm focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded px-2 py-1"
+              className="text-slate-500 hover:text-slate-900 transition-colors text-sm rounded px-2 py-1"
             >
               Terms of Service
             </Link>

@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Link
       href={`/products/${product.slug}`}
       prefetch={true}
-      className="group block h-full focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-2xl"
+      className="group block h-full rounded-2xl"
       aria-label={`View details for ${product.title}`}
     >
       <motion.div

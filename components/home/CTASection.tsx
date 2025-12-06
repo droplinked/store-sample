@@ -54,7 +54,7 @@ export function CTASection() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-primary px-10 py-5 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-primary px-10 py-5 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
           >
             Start Shopping Now
           </Link>

@@ -166,8 +166,16 @@ export default function SKUSelector({
       selectedSku.attributes.forEach(attr => {
         attrs[attr.key] = attr.value;
       });
-      setSelectedAttributes(attrs);
+
+      // Defer the state update to avoid calling setState synchronously within the effect,
+      // which can cause cascading renders. Cleanup the timer on unmount/dep change.
+      const id = window.setTimeout(() => setSelectedAttributes(attrs), 0);
+      return () => clearTimeout(id);
     }
+
+    // Ensure the effect always returns a cleanup function on every code path
+    // to satisfy strict return checks (returns a noop cleanup when no timer was set).
+    return () => {};
   }, [selectedSku]);
 
   // Handle attribute selection
@@ -254,8 +262,7 @@ export default function SKUSelector({
                     aria-pressed={isSelected}
                     aria-label={`${group.title}: ${option.caption}${!isAvailable ? ' (Out of stock)' : ''}`}
                     className={`
-                      relative rounded-lg sm:rounded-xl border-2 transition-all 
-                      focus:outline-none focus:ring-2 sm:focus:ring-4 focus:ring-orange-500
+                      relative rounded-lg sm:rounded-xl border-2 transition-all
                       ${isColor ? 'px-2 sm:px-3 py-2 sm:py-3' : 'px-3 sm:px-5 py-2 sm:py-3'}
                       ${
                         isSelected
@@ -269,7 +276,7 @@ export default function SKUSelector({
                     {isColor && colorHex ? (
                       <div className="flex items-center gap-1.5 sm:gap-2">
                         <span
-                          className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-slate-200 shadow-sm flex-shrink-0"
+                          className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-slate-200 shadow-sm shrink-0"
                           style={{ backgroundColor: colorHex }}
                           aria-hidden="true"
                         />

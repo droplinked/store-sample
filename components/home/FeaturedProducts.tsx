@@ -121,7 +121,7 @@ export function FeaturedProducts({ products, loading }: FeaturedProductsProps) {
           </div>
           <Link
             href="/products"
-            className="hidden sm:flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 transition-colors focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-2"
+            className="hidden sm:flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 transition-colors rounded-lg px-3 py-2"
             aria-label="View all products"
           >
             View All{' '}

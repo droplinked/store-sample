@@ -3,7 +3,6 @@
 import { getColorHex } from './utils/colorUtils';
 
 interface AttributeButtonProps {
-  attributeKey: string;
   attributeTitle: string;
   option: {
     value: string;
@@ -16,7 +15,6 @@ interface AttributeButtonProps {
 }
 
 export default function AttributeButton({
-  attributeKey,
   attributeTitle,
   option,
   isSelected,
@@ -35,7 +33,7 @@ export default function AttributeButton({
       aria-label={`${attributeTitle}: ${option.caption}${!isAvailable ? ' (Out of stock)' : ''}`}
       className={`
         relative rounded-lg sm:rounded-xl border-2 transition-all 
-        focus:outline-none focus:ring-2 sm:focus:ring-4 focus:ring-orange-500
+
         ${isColor ? 'px-2 sm:px-3 py-2 sm:py-3' : 'px-3 sm:px-5 py-2 sm:py-3'}
         ${
           isSelected
@@ -49,7 +47,7 @@ export default function AttributeButton({
       {isColor && colorHex ? (
         <div className="flex items-center gap-1.5 sm:gap-2">
           <span
-            className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-slate-200 shadow-sm flex-shrink-0"
+            className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-slate-200 shadow-sm shrink-0"
             style={{ backgroundColor: colorHex }}
             aria-hidden="true"
           />
