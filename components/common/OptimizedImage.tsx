@@ -20,7 +20,7 @@
 'use client';
 
 import Image, { ImageProps } from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
   showSkeleton?: boolean;
@@ -29,16 +29,27 @@ interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
 export function OptimizedImage({
   showSkeleton = true,
   className = '',
+  src,
   ...props
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
+  // Reset loading state when src changes
+  useEffect(() => {
+    setIsLoading(true);
+    setHasError(false);
+  }, [src]);
+
   return (
     <div className="relative w-full h-full">
-      {/* Loading Skeleton */}
+      {/* Loading Skeleton with Shimmer */}
       {showSkeleton && isLoading && !hasError && (
-        <div className="absolute inset-0 bg-slate-100 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200">
+          <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+          {/* Pulsing overlay for extra visibility */}
+          <div className="absolute inset-0 animate-pulse bg-slate-200/30" />
+        </div>
       )}
 
       {/* Error State */}
@@ -61,6 +72,7 @@ export function OptimizedImage({
       ) : (
         <Image
           {...props}
+          src={src}
           className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
           onLoad={() => setIsLoading(false)}
           onError={() => {

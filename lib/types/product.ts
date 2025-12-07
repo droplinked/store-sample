@@ -113,8 +113,8 @@ export interface Product {
   shippingProfileId?: string | null;
 
   // Timestamps
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 /**

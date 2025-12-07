@@ -32,7 +32,7 @@ export function groupSkusByAttributes(skus: ProductSKU[]): AttributeGroup[] {
       if (!existingValue) {
         group.values.push({
           value: attr.value,
-          caption: attr.caption,
+          caption: attr.caption || attr.value,
           available: isAvailable,
           skus: [sku],
         });
@@ -63,10 +63,16 @@ export function groupSkusByAttributes(skus: ProductSKU[]): AttributeGroup[] {
           return aNum - bNum;
         }
         
-        return a.caption.localeCompare(b.caption);
+        const aCaption = a.caption || a.value || '';
+        const bCaption = b.caption || b.value || '';
+        return aCaption.localeCompare(bCaption);
       });
     } else {
-      group.values.sort((a, b) => a.caption.localeCompare(b.caption));
+      group.values.sort((a, b) => {
+        const aCaption = a.caption || a.value || '';
+        const bCaption = b.caption || b.value || '';
+        return aCaption.localeCompare(bCaption);
+      });
     }
   });
 

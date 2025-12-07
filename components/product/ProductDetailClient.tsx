@@ -11,6 +11,7 @@ import { Product, ProductSKU } from '@/lib/types';
 import AddToCartButton from './AddToCartButton';
 import SKUSelector from './SKUSelector';
 
+
 interface ProductDetailClientProps {
   product: Product;
 }

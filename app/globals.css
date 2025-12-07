@@ -172,4 +172,136 @@ svg[data-darkreader-inline-fill] {
   .hover-secondary {
     @apply hover:bg-slate-700 hover:text-white;
   }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Product Description Prose Styling */
+  .prose {
+    @apply text-gray-700;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply font-bold text-gray-900 tracking-tight;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  .prose h2 {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  .prose h3 {
+    @apply text-xl sm:text-2xl;
+  }
+
+  .prose h4 {
+    @apply text-lg sm:text-xl;
+  }
+
+  .prose h5,
+  .prose h6 {
+    @apply text-base sm:text-lg;
+  }
+
+  .prose p {
+    @apply text-base sm:text-lg leading-relaxed;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-4 sm:my-6;
+    padding-left: 1.5em;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply text-base sm:text-lg leading-relaxed my-2;
+  }
+
+  .prose li p {
+    @apply my-1;
+  }
+
+  .prose strong,
+  .prose b {
+    @apply font-bold text-gray-900;
+  }
+
+  .prose em,
+  .prose i {
+    @apply italic;
+  }
+
+  .prose a {
+    @apply text-primary underline hover:text-gray-700 transition-colors;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4;
+  }
+
+  .prose code {
+    @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800;
+  }
+
+  .prose pre {
+    @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose hr {
+    @apply border-gray-200 my-6 sm:my-8;
+  }
+
+  .prose table {
+    @apply w-full my-4 border-collapse;
+  }
+
+  .prose th,
+  .prose td {
+    @apply border border-gray-300 px-4 py-2 text-left;
+  }
+
+  .prose th {
+    @apply bg-gray-50 font-bold;
+  }
+
+  /* First element margin reset */
+  .prose > *:first-child {
+    margin-top: 0;
+  }
+
+  /* Last element margin reset */
+  .prose > *:last-child {
+    margin-bottom: 0;
+  }
 }

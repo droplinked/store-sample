@@ -193,13 +193,13 @@ export default function ProductDetailPage() {
       <div className="px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-7xl">
           <div className="gap-8 lg:gap-16 lg:grid lg:grid-cols-2 items-start">
-            {/* Left: Product Gallery */}
-            <div className="w-full">
+            {/* Left: Product Gallery - Sticky */}
+            <div className="w-full lg:sticky lg:top-8 lg:self-start">
               <ProductGallery images={product.images} />
             </div>
 
-            {/* Right: Product Info */}
-            <div className="w-full space-y-6 sm:space-y-8 lg:space-y-10">
+            {/* Right: Product Info - Scrollable */}
+            <div className="w-full space-y-6 sm:space-y-8 lg:space-y-10 mt-8 lg:mt-0">
               {/* Header */}
               <div className="space-y-3 sm:space-y-4">
                 {product.collectionName && (
@@ -228,11 +228,10 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Description */}
-              <div className="prose prose-sm sm:prose-base prose-gray max-w-none border-b border-gray-100 pb-6 sm:pb-8">
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
+              <div 
+                className="prose prose-sm sm:prose-base prose-gray max-w-none"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
 
               {/* Client-side variant selection and add to cart */}
               <ProductDetailClient product={product} />

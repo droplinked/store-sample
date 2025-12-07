@@ -17,6 +17,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const shop = useShop();
+
   const currency = shop?.currency || {
     abbreviation: 'USD',
     code: 'USD',
@@ -64,11 +65,8 @@ export default function ProductCard({ product }: ProductCardProps) {
             src={primaryImage.thumbnail || primaryImage.original}
             alt={primaryImage.alt || product.title}
             fill
-            loading="lazy"
             className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            placeholder="blur"
-            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2YxZjVmOSIvPjwvc3ZnPg=="
             showSkeleton={true}
           />
 

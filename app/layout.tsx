@@ -87,7 +87,7 @@ export default function RootLayout({
           <ShopInitializer />
           <CartProvider>
             <Header />
-            <main id="main-content" className="min-h-screen bg-gray-50">
+            <main id="main-content" className="min-h-screen bg-gray-50 pt-20">
               {children}
             </main>
             <Footer />
