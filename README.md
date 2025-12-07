@@ -1,6 +1,7 @@
 # Droplinked Store Sample
 
-A Next.js e-commerce storefront demonstrating how to integrate with the Droplinked API. Get a fully functional online store running in minutes.
+A simple Next.js storefront example showing how to build an online shop using **Droplinked Public APIs**.
+This sample helps you quickly understand how to integrate products, carts, and shop data using Droplinked.
 
 ## 🚀 Quick Start
 
@@ -12,9 +13,10 @@ npm install
 
 ### 2. Get Your API Key
 
-1. Go to [Droplinked Dashboard](https://droplinked.com/)
-2. Navigate to **Settings → Developers**
+1. Go to the `https://droplinked.com/` 
+2. Open **Settings → Developers**
 3. Create a new API key
+   (Guide: `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/getting-started` )
 
 ### 3. Configure Environment
 
@@ -32,58 +34,40 @@ NEXT_PUBLIC_SHOP_NAME=your_shop_name
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your store.
+Open [http://localhost:3000](http://localhost:3000) to view your storefront.
 
 ---
 
 ## 🔌 API Integration
 
-This store demonstrates a complete integration with the Droplinked API. Here's how it works:
+This sample demonstrates a full integration with Droplinked’s Public APIs.
 
 ### Authentication
 
-Every API request must include your API key in the header:
+Every API request must include your API key:
+
 ```
 x-droplinked-api-key: YOUR_API_KEY
 ```
 
-### Implementation
-
-The store uses the following API clients:
-
-- **ApiClient** (`lib/api/client.ts`) - Core HTTP client with authentication and error handling
-- **Product API** (`lib/api/products.ts`) - Product fetching and search
-- **Cart API** (`lib/api/cart.ts`) - Cart operations (add, remove, update)
-- **Shop API** (`lib/api/shop.ts`) - Shop configuration and settings
 
 ### API Documentation
 
-Explore the full API specification using Swagger:
-🔗 [https://apiv3.droplinked.com/swagger/dev-docs](https://apiv3.droplinked.com/swagger/dev-docs)
-
-### API Proxy
-
-The project includes an optional API proxy (`app/api/proxy/route.ts`) to handle CORS and add security headers. Enable it by setting `NEXT_PUBLIC_USE_PROXY=true`.
-
-## 📄 License
-
-This project is provided as a sample for Droplinked integration.
-
-## 🔗 Resources
-
-- [Droplinked API Documentation](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/)
-- [Droplinked API Reference (Swagger)](https://apiv3.droplinked.com/swagger/dev-docs)
-- [Droplinked Dashboard](https://droplinked.com/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com)
-- [TypeScript](https://www.typescriptlang.org)
-
-## 💬 Support
-
-- [API Documentation](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/)
-- [API Reference](https://apiv3.droplinked.com/swagger/dev-docs)
-- [Droplinked Dashboard](https://droplinked.com/)
+Full API Reference:
+🔗 `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference` 
 
 ---
 
-Built with Next.js 16, React 19, and TypeScript
+## 📄 License
+
+This sample project is provided for demonstrating Droplinked API integration.
+
+## 🔗 Resources
+
+* `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/` 
+* `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference` 
+* `https://droplinked.com/` 
+
+## 💬 Support
+
+* `https://droplinked.com/`
