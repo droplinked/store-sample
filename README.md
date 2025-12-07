@@ -54,7 +54,7 @@ x-droplinked-api-key: YOUR_API_KEY
 ### API Documentation
 
 Full API Reference:
-🔗 `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference` 
+🔗 [Droplinked API Reference](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference)
 
 ---
 
@@ -64,10 +64,10 @@ This sample project is provided for demonstrating Droplinked API integration.
 
 ## 🔗 Resources
 
-* `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/` 
-* `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference` 
-* `https://droplinked.com/` 
+* [Droplinked API Guide](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/)
+* [Droplinked API Reference](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference)
+* [Droplinked Dashboard](https://droplinked.com/)
 
 ## 💬 Support
 
-* `https://droplinked.com/`
+* [Droplinked Dashboard](https://droplinked.com/)
