@@ -15,12 +15,14 @@ const CATEGORIES = [
   { id: 'public', name: 'Public Products' },
 ];
 
-export default function CategoryFilter({ selectedCategory }: CategoryFilterProps) {
+export default function CategoryFilter({
+  selectedCategory,
+}: CategoryFilterProps) {
   return (
     <aside className="hidden lg:col-span-1 lg:block">
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-bold text-slate-900 mb-4">Categories</h3>
+         {/* <h3 className="text-lg font-bold text-slate-900 mb-4">Categories</h3>
           <ul className="space-y-3">
             <li>
               <Link
@@ -34,7 +36,7 @@ export default function CategoryFilter({ selectedCategory }: CategoryFilterProps
                 All Products
               </Link>
             </li>
-            {CATEGORIES.map(cat => (
+             {CATEGORIES.map(cat => (
               <li key={cat.id}>
                 <Link
                   href={`/products?category=${encodeURIComponent(cat.id)}`}
@@ -47,8 +49,8 @@ export default function CategoryFilter({ selectedCategory }: CategoryFilterProps
                   {cat.name}
                 </Link>
               </li>
-            ))}
-          </ul>
+            ))} 
+          </ul>*/}
         </div>
 
         <div className="space-y-2 p-4 rounded-xl bg-slate-50 border border-slate-200">
@@ -56,7 +58,8 @@ export default function CategoryFilter({ selectedCategory }: CategoryFilterProps
             💡 Ready for Droplinked API?
           </p>
           <p className="text-xs text-slate-600">
-            This store is structured to seamlessly swap mock data with real API calls.
+            This store is structured to seamlessly swap mock data with real API
+            calls.
           </p>
         </div>
       </div>
