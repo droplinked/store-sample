@@ -93,3 +93,10 @@ export async function removeCartProduct(
   }
   return response as Cart;
 }
+
+/**
+ * Delete entire cart
+ */
+export async function deleteCart(cartId: string): Promise<void> {
+  await apiClient.delete(`/v2/carts/${cartId}`);
+}

@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 import { getCart } from '@/lib/api/cart';
 
 export default function CartPage() {
-  const { cart, updateQuantity, removeItem, isInitialized } = useCart();
+  const { cart, updateQuantity, removeItem, clearCart, isInitialized } = useCart();
   const [isLoadingCart, setIsLoadingCart] = useState(false);
   const [localCart, setLocalCart] = useState(cart);
 
@@ -52,9 +52,7 @@ export default function CartPage() {
 
   // Update local cart when context cart changes
   useEffect(() => {
-    if (cart) {
-      setLocalCart(cart);
-    }
+    setLocalCart(cart);
   }, [cart]);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
@@ -101,6 +99,15 @@ export default function CartPage() {
     }
   };
 
+  const handleClearCart = async () => {
+    try {
+      await clearCart();
+      handleSuccess('Cart cleared successfully');
+    } catch (error) {
+      handleError(error, 'Failed to clear cart');
+    }
+  };
+
   if (!isInitialized || isLoadingCart) {
     return <LoadingCart />;
   }
@@ -137,6 +144,7 @@ export default function CartPage() {
               isCheckingOut={isCheckingOut}
               itemsCount={localCart.items.length}
               onCheckout={handleCheckout}
+              onClearCart={handleClearCart}
             />
           </div>
         </div>

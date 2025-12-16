@@ -16,6 +16,7 @@ interface OrderSummaryProps {
   isCheckingOut: boolean;
   itemsCount: number;
   onCheckout: () => void;
+  onClearCart?: () => void;
 }
 
 export function OrderSummary({
@@ -25,6 +26,7 @@ export function OrderSummary({
   isCheckingOut,
   itemsCount,
   onCheckout,
+  onClearCart,
 }: OrderSummaryProps) {
   return (
     <div className="sticky top-24 space-y-6 rounded-2xl bg-white p-8 border border-gray-100 shadow-lg">
@@ -111,6 +113,15 @@ export function OrderSummary({
       >
         Continue Shopping
       </Link>
+
+      {onClearCart && itemsCount > 0 && (
+        <button
+          onClick={onClearCart}
+          className="w-full py-2 font-medium text-red-600 hover:text-red-700 transition-colors text-sm border border-red-200 rounded-lg hover:bg-red-50"
+        >
+          Clear Cart
+        </button>
+      )}
     </div>
   );
 }

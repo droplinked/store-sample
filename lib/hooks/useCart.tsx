@@ -16,6 +16,7 @@ import {
   getCart,
   removeCartProduct,
   updateCartProductQuantity,
+  deleteCart,
 } from '@/lib/api/cart';
 
 const CART_STORAGE_KEY = 'cart_id';
@@ -186,9 +187,22 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }, []);
 
-  const clearCart = useCallback(() => {
-    setCart(null);
-    localStorage.removeItem(CART_STORAGE_KEY);
+  const clearCart = useCallback(async () => {
+    try {
+      const cartId = localStorage.getItem(CART_STORAGE_KEY);
+      if (cartId) {
+        await deleteCart(cartId);
+      }
+      setCart(null);
+      localStorage.removeItem(CART_STORAGE_KEY);
+    } catch (error) {
+      // Even if API call fails, clear local cart
+      setCart(null);
+      localStorage.removeItem(CART_STORAGE_KEY);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to delete cart from server:', error);
+      }
+    }
   }, []);
 
   const value: CartContextType = {
