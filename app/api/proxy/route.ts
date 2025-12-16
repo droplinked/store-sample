@@ -75,10 +75,11 @@ async function proxyRequest(request: NextRequest) {
 
     // Get response body
     const contentTypeHeader = response.headers.get('content-type');
-    let data;
+    let data = null;
 
     if (contentTypeHeader?.includes('application/json')) {
-      data = await response.json();
+      const text = await response.text();
+      data = text ? JSON.parse(text) : null;
     } else {
       data = await response.text();
     }
