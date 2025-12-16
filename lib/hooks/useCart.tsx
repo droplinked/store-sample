@@ -170,8 +170,23 @@ export function CartProvider({ children }: CartProviderProps) {
       if (!cartId) return;
 
       const cartData = await removeCartProduct(cartId, skuId);
-      setCart(cartData);
-      toast.success('Item removed');
+      
+      // If cart is now empty, delete it entirely
+      if (!cartData.items || cartData.items.length === 0) {
+        try {
+          await deleteCart(cartId);
+        } catch (deleteError) {
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Failed to delete empty cart:', deleteError);
+          }
+        }
+        setCart(null);
+        localStorage.removeItem(CART_STORAGE_KEY);
+        toast.success('Item removed');
+      } else {
+        setCart(cartData);
+        toast.success('Item removed');
+      }
     } catch (error) {
       // If cart not found (404), clear the invalid cart
       const statusCode = getErrorStatusCode(error);
