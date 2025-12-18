@@ -5,6 +5,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import NextImage from 'next/image';
 import { ProductImage } from '@/lib/types';
 
 interface ProductGalleryProps {
@@ -18,11 +19,13 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
   const [highQualityLoaded, setHighQualityLoaded] = useState(false);
 
   // Reset loading state when image changes
-  useEffect(() => {
+  const handleImageSelect = (index: number) => {
+    if (index === selectedImageIndex) return;
+    setSelectedImageIndex(index);
     setImageLoading(true);
     setImageError(false);
     setHighQualityLoaded(false);
-  }, [selectedImageIndex]);
+  };
 
   // Preload adjacent images for faster switching
   useEffect(() => {
@@ -67,17 +70,12 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* Preload first image */}
-      {selectedImageIndex === 0 && (
-        <link rel="preload" as="image" href={selectedImage.original} />
-      )}
-
       {/* Main Image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100 shadow-sm">
         {/* Loading skeleton with shimmer */}
         {imageLoading && !imageError && (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 z-10">
-            <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-linear-to-br from-slate-200 via-slate-100 to-slate-200 z-10">
+            <div className="absolute inset-0 -translate-x-full animate-shimmer bg-linear-to-r from-transparent via-white to-transparent opacity-80" />
             {/* Pulsing overlay for extra visibility */}
             <div className="absolute inset-0 animate-pulse bg-slate-200/30" />
           </div>
@@ -106,21 +104,24 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
         )}
 
         {/* Low quality placeholder (thumbnail) - loads first */}
-        <img
-          key={`thumbnail-${selectedImageIndex}`}
-          src={selectedImage.thumbnail}
-          alt={selectedImage.alt}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            highQualityLoaded ? 'opacity-0' : 'opacity-100'
-          } ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
-          style={{ filter: 'blur(8px)', transform: 'scale(1.1)' }}
-          onLoad={() => {
-            setImageLoading(false);
-          }}
-          onError={() => {
-            setImageLoading(false);
-          }}
-        />
+        {!highQualityLoaded && (
+          <NextImage
+            key={`thumbnail-${selectedImageIndex}`}
+            src={selectedImage.thumbnail}
+            alt={selectedImage.alt}
+            fill
+            className={`object-cover z-0 ${
+              imageLoading ? 'opacity-0' : 'opacity-100'
+            }`}
+            style={{ filter: 'blur(8px)', transform: 'scale(1.1)' }}
+            onLoad={() => {
+              setImageLoading(false);
+            }}
+            onError={() => {
+              setImageLoading(false);
+            }}
+          />
+        )}
 
         {/* Loading indicator when high quality is loading */}
         {!imageLoading && !highQualityLoaded && !imageError && (
@@ -133,21 +134,20 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
         )}
 
         {/* High quality image - loads in background */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <NextImage
           key={`image-${selectedImageIndex}`}
           src={selectedImage.original}
           alt={selectedImage.alt}
-          fetchPriority={selectedImageIndex === 0 ? 'high' : 'auto'}
-          decoding="async"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+          priority={selectedImageIndex === 0}
+          fill
+          className={`object-cover z-10 transition-opacity duration-500 ${
             highQualityLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => {
             setHighQualityLoaded(true);
             setImageError(false);
           }}
-          onError={(e) => {
+          onError={() => {
             console.error('Image failed to load:', selectedImage.original);
             setImageError(true);
           }}
@@ -164,7 +164,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
           {images.map((image, index) => (
             <button
               key={image.id || index}
-              onClick={() => setSelectedImageIndex(index)}
+              onClick={() => handleImageSelect(index)}
               onMouseEnter={() => {
                 // Preload image on hover for instant switching
                 const img = new Image();
@@ -180,12 +180,11 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
               aria-label={`View image ${index + 1}: ${image.alt}`}
               type="button"
             >
-              <img
+              <NextImage
                 src={image.thumbnail}
                 alt={`Thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
+                fill
+                className="object-cover"
               />
             </button>
           ))}
