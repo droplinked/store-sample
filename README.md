@@ -20,13 +20,21 @@ npm install
 
 ### 3. Configure Environment
 
-Create a `.env` file:
+Create a `.env` file with the following variables:
 
 ```env
-NEXT_PUBLIC_API_URL=https://api.io.droplinked.com
-NEXT_PUBLIC_API_KEY=your_api_key_here
+# Server-side only variables (NEVER expose these to the browser)
+API_URL=https://api.io.droplinked.com
+API_KEY=your_api_key_here
+
+# Public variables (safe to expose to the browser)
 NEXT_PUBLIC_SHOP_NAME=your_shop_name
 ```
+
+**⚠️ Security Notice:** 
+- `API_KEY` and `API_URL` must NOT be prefixed with `NEXT_PUBLIC_`. These are server-side only.
+- Only `NEXT_PUBLIC_SHOP_NAME` should be public as it's needed for client-side rendering.
+- All API requests are proxied through `/api/proxy` to keep your API key secure.
 
 ### 4. Run the Store
 
@@ -40,16 +48,29 @@ Open [http://localhost:3000](http://localhost:3000) to view your storefront.
 
 ## 🔌 API Integration
 
-This sample demonstrates a full integration with Droplinked’s Public APIs.
+This sample demonstrates a full integration with Droplinked's Public APIs.
 
 ### Authentication
 
-Every API request must include your API key:
+API requests are authenticated server-side via the proxy route. The API key is:
+- Stored securely in server-side environment variables (`API_KEY`)
+- Never exposed to the browser or client-side JavaScript
+- Added to requests via the `/api/proxy` route
+
+### Security Architecture
 
 ```
-x-droplinked-api-key: YOUR_API_KEY
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Browser   │────▶│  Next.js    │────▶│  Droplinked │
+│  (Client)   │◄────│   Proxy     │◄────│    API      │
+└─────────────┘     └─────────────┘     └─────────────┘
+                           │
+                    ┌──────┴──────┐
+                    │  API_KEY    │
+                    │ (Server-side│
+                    │    only)    │
+                    └─────────────┘
 ```
-
 
 ### API Documentation
 

@@ -34,17 +34,13 @@ export class ApiClient {
   }
 
   /**
-   * Build the request URL, using proxy if enabled
+   * Build the request URL - always uses proxy to protect API credentials
    */
   private buildUrl(endpoint: string): string {
-    if (this.useProxy) {
-      // Route through Next.js API proxy
-      const url = new URL('/api/proxy', window.location.origin);
-      url.searchParams.set('path', endpoint);
-      return url.toString();
-    }
-    // Direct API call (will likely hit CORS)
-    return `${process.env.NEXT_PUBLIC_API_URL}${endpoint}`;
+    // Always route through Next.js API proxy to keep API key secure
+    const url = new URL('/api/proxy', window.location.origin);
+    url.searchParams.set('path', endpoint);
+    return url.toString();
   }
 
   /**

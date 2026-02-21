@@ -23,9 +23,9 @@ export interface Currency {
  * Payment method configuration
  */
 export interface PaymentMethod {
-  id: string;
+  id?: string; // Optional to match schema
   type: 'STRIPE' | 'PAYPAL' | 'ETH' | 'POLYGON' | 'SOLANA' | string;
-  isActive: boolean;
+  isActive?: boolean; // Optional to match schema
   chainId?: string; // For crypto payments
   destinationAddress?: string; // Wallet address for crypto
   tokens?: {
@@ -35,26 +35,31 @@ export interface PaymentMethod {
     decimals: number;
     type: string;
   }[];
+  // Additional fields from schema
+  enabled?: boolean;
+  label?: string;
+  provider?: string;
+  network?: string;
 }
 
 /**
  * Shop social media links
  */
 export interface SocialMedia {
-  instagram: string | null;
-  twitter: string | null;
-  discord: string | null;
-  telegram: string | null;
-  youtube: string | null;
+  instagram?: string | null;
+  twitter?: string | null;
+  discord?: string | null;
+  telegram?: string | null;
+  youtube?: string | null;
 }
 
 /**
  * Shop design/theme configuration
  */
 export interface ShopDesign {
-  primaryColor: string;
-  fontFamily: string;
-  headerBackground: string;
+  primaryColor?: string;
+  fontFamily?: string;
+  headerBackground?: string;
   // ... other design properties can be added
 }
 
@@ -66,12 +71,12 @@ export interface Shop {
   id: string;
   url: string; // Unique identifier (e.g., "myshop")
   name: string;
-  ownerId: string;
+  ownerId?: string; // Optional as it may not be returned by public API
 
   // Branding
-  logo: string; // URL to logo image
+  logo?: string; // URL to logo image (optional)
   description: string;
-  backgroundColor: string;
+  backgroundColor?: string; // Optional
 
   // Settings
   isAgeRestricted: boolean;
@@ -84,10 +89,10 @@ export interface Shop {
   paymentMethods: PaymentMethod[];
 
   // Social Media Links
-  socialMedia: SocialMedia;
+  socialMedia?: SocialMedia;
 
   // Design/Theme
-  design: ShopDesign;
+  design?: ShopDesign;
 }
 
 // ============================================================================

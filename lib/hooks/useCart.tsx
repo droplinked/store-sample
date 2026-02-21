@@ -63,12 +63,12 @@ export function CartProvider({ children }: CartProviderProps) {
   }, [hasCheckedCart]);
 
   const createNewCart = useCallback(async (): Promise<string> => {
-    // Try to get shopId from shop store first, fallback to env
+    // Get shopId from shop store - should already be loaded by useShopInit
     const shopStore = (await import('@/lib/store/shopStore')).useShopStore.getState();
-    const shopId = shopStore.shop?.id || process.env.NEXT_PUBLIC_SHOP_ID;
+    const shopId = shopStore.shop?.id;
     
     if (!shopId) {
-      throw new Error('Shop ID is not configured. Please ensure shop data is loaded.');
+      throw new Error('Shop ID is not available. Please ensure shop data is loaded before creating a cart.');
     }
 
     const cartData = await createCart({

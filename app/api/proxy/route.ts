@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
+// Server-side only environment variables (NOT exposed to browser)
+const API_BASE_URL = process.env.API_URL || '';
+const API_KEY = process.env.API_KEY || '';
 
 export const runtime = 'edge';
 
