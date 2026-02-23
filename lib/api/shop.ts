@@ -13,6 +13,7 @@
 import { apiClient } from './client';
 import type { Shop, ApiResponse } from '@/lib/types';
 import { ShopSchema } from '@/lib/types/shop';
+import { validateShopName } from '@/lib/utils/validation';
 
 
 /**
@@ -32,8 +33,11 @@ import { ShopSchema } from '@/lib/types/shop';
  * @api GET /shops/v2/public/name/{name}
  */
 export async function getShopByName(shopName: string): Promise<Shop> {
+  // Validate shopName parameter before use (MED-2)
+  const validatedShopName = validateShopName(shopName);
+  
   const response = await apiClient.get<any>(
-    `/shops/v2/public/name/${shopName}`
+    `/shops/v2/public/name/${validatedShopName}`
   );
 
 

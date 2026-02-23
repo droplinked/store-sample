@@ -20,6 +20,7 @@ import {
 } from '@/lib/types';
 import { PaginatedResponseSchema } from '@/lib/types/common';
 import { apiClient } from './client';
+import { validateShopName, validateProductSlug } from '@/lib/utils/validation';
 
 /**
  * Product list filter options
@@ -66,6 +67,9 @@ export async function getProducts(
   shopName: string,
   filters: ProductFilters = {}
 ): Promise<PaginatedResponse<ProductListItem>> {
+  // Validate shopName parameter before use (MED-2)
+  const validatedShopName = validateShopName(shopName);
+  
   // Build query parameters
   const params = new URLSearchParams();
   
@@ -79,10 +83,10 @@ export async function getProducts(
   if (filters.search) params.append('search', filters.search);
 
   // Add shopName to query params as requested
-  params.append('shopName', shopName);
+  params.append('shopName', validatedShopName);
 
   const queryString = params.toString();
-  const endpoint = `/product-v2/public/shop/${shopName}${queryString ? `?${queryString}` : ''}`;
+  const endpoint = `/product-v2/public/shop/${validatedShopName}${queryString ? `?${queryString}` : ''}`;
 
   const response = await apiClient.get<any>(endpoint);
 
@@ -144,8 +148,11 @@ export async function getProducts(
  * @api GET /product-v2/public/by-slug/{slug}
  */
 export async function getProductBySlug(slug: string): Promise<Product> {
+  // Validate slug parameter before use (MED-2)
+  const validatedSlug = validateProductSlug(slug);
+  
   const response = await apiClient.get<any>(
-    `/product-v2/public/by-slug/${slug}`
+    `/product-v2/public/by-slug/${validatedSlug}`
   );
 
 
@@ -198,7 +205,10 @@ export async function getFeaturedProducts(
     );
   }
   
-  const response = await getProducts(shop, {
+  // Validate shopName parameter before use (MED-2)
+  const validatedShopName = validateShopName(shop);
+  
+  const response = await getProducts(validatedShopName, {
     page: 1,
     limit: count,
   });

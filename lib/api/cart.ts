@@ -1,5 +1,6 @@
 import { apiClient } from './client';
 import { Cart } from '@/lib/types';
+import { validateCartId, validateSkuId } from '@/lib/utils/validation';
 
 export interface AddToCartParams {
   skuId: string;
@@ -15,7 +16,10 @@ export interface CreateCartParams {
  * Fetch cart by ID
  */
 export async function getCart(cartId: string): Promise<Cart> {
-  const response = await apiClient.get<{ data: Cart } | Cart>(`/v2/carts/${cartId}`);
+  // Validate cartId parameter before use (MED-2)
+  const validatedCartId = validateCartId(cartId);
+  
+  const response = await apiClient.get<{ data: Cart } | Cart>(`/v2/carts/${validatedCartId}`);
   
   // Handle different response structures
   if (response && typeof response === 'object' && 'data' in response) {
@@ -44,9 +48,13 @@ export async function addProductToCart(
   cartId: string,
   params: AddToCartParams
 ): Promise<Cart> {
+  // Validate parameters before use (MED-2)
+  const validatedCartId = validateCartId(cartId);
+  const validatedSkuId = validateSkuId(params.skuId);
+  
   const response = await apiClient.post<{ data: Cart } | Cart>(
-    `/v2/carts/${cartId}/products`,
-    params
+    `/v2/carts/${validatedCartId}/products`,
+    { ...params, skuId: validatedSkuId }
   );
   
   // Handle different response structures
@@ -64,8 +72,12 @@ export async function updateCartProductQuantity(
   skuId: string,
   quantity: number
 ): Promise<Cart> {
+  // Validate parameters before use (MED-2)
+  const validatedCartId = validateCartId(cartId);
+  const validatedSkuId = validateSkuId(skuId);
+  
   const response = await apiClient.patch<{ data: Cart } | Cart>(
-    `/v2/carts/${cartId}/products/${skuId}`,
+    `/v2/carts/${validatedCartId}/products/${validatedSkuId}`,
     { quantity }
   );
   
@@ -83,8 +95,12 @@ export async function removeCartProduct(
   cartId: string,
   skuId: string
 ): Promise<Cart> {
+  // Validate parameters before use (MED-2)
+  const validatedCartId = validateCartId(cartId);
+  const validatedSkuId = validateSkuId(skuId);
+  
   const response = await apiClient.delete<{ data: Cart } | Cart>(
-    `/v2/carts/${cartId}/products/${skuId}`
+    `/v2/carts/${validatedCartId}/products/${validatedSkuId}`
   );
   
   // Handle different response structures
@@ -98,5 +114,8 @@ export async function removeCartProduct(
  * Delete entire cart
  */
 export async function deleteCart(cartId: string): Promise<void> {
-  await apiClient.delete(`/v2/carts/${cartId}`);
+  // Validate cartId parameter before use (MED-2)
+  const validatedCartId = validateCartId(cartId);
+  
+  await apiClient.delete(`/v2/carts/${validatedCartId}`);
 }
