@@ -83,7 +83,7 @@ export function validateShopName(shopName: string): string {
   const result = shopNameSchema.safeParse(shopName);
 
   if (!result.success) {
-    const errorMessage = result.error.errors[0]?.message || 'Invalid shop name';
+    const errorMessage = result.error.issues[0]?.message || 'Invalid shop name';
     throw new Error(`Validation failed for shopName: ${errorMessage}`);
   }
 
@@ -100,7 +100,7 @@ export function validateCartId(cartId: string): string {
   const result = cartIdSchema.safeParse(cartId);
 
   if (!result.success) {
-    const errorMessage = result.error.errors[0]?.message || 'Invalid cart ID';
+    const errorMessage = result.error.issues[0]?.message || 'Invalid cart ID';
     throw new Error(`Validation failed for cartId: ${errorMessage}`);
   }
 
@@ -117,7 +117,7 @@ export function validateSkuId(skuId: string): string {
   const result = skuIdSchema.safeParse(skuId);
 
   if (!result.success) {
-    const errorMessage = result.error.errors[0]?.message || 'Invalid SKU ID';
+    const errorMessage = result.error.issues[0]?.message || 'Invalid SKU ID';
     throw new Error(`Validation failed for skuId: ${errorMessage}`);
   }
 
@@ -134,7 +134,7 @@ export function validateProductSlug(slug: string): string {
   const result = productSlugSchema.safeParse(slug);
 
   if (!result.success) {
-    const errorMessage = result.error.errors[0]?.message || 'Invalid product slug';
+    const errorMessage = result.error.issues[0]?.message || 'Invalid product slug';
     throw new Error(`Validation failed for slug: ${errorMessage}`);
   }
 
@@ -164,7 +164,7 @@ export function validateUrlParams(params: {
   if (params.shopName !== undefined) {
     const validation = shopNameSchema.safeParse(params.shopName);
     if (!validation.success) {
-      errors.push(`shopName: ${validation.error.errors[0]?.message}`);
+      errors.push(`shopName: ${validation.error.issues[0]?.message}`);
     } else {
       result.shopName = validation.data;
     }
@@ -173,7 +173,7 @@ export function validateUrlParams(params: {
   if (params.cartId !== undefined) {
     const validation = cartIdSchema.safeParse(params.cartId);
     if (!validation.success) {
-      errors.push(`cartId: ${validation.error.errors[0]?.message}`);
+      errors.push(`cartId: ${validation.error.issues[0]?.message}`);
     } else {
       result.cartId = validation.data;
     }
@@ -182,7 +182,7 @@ export function validateUrlParams(params: {
   if (params.skuId !== undefined) {
     const validation = skuIdSchema.safeParse(params.skuId);
     if (!validation.success) {
-      errors.push(`skuId: ${validation.error.errors[0]?.message}`);
+      errors.push(`skuId: ${validation.error.issues[0]?.message}`);
     } else {
       result.skuId = validation.data;
     }
@@ -191,7 +191,7 @@ export function validateUrlParams(params: {
   if (params.slug !== undefined) {
     const validation = productSlugSchema.safeParse(params.slug);
     if (!validation.success) {
-      errors.push(`slug: ${validation.error.errors[0]?.message}`);
+      errors.push(`slug: ${validation.error.issues[0]?.message}`);
     } else {
       result.slug = validation.data;
     }
