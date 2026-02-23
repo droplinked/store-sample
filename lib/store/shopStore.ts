@@ -6,6 +6,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Shop, Currency } from '@/lib/types';
+import { ShopSchema } from '@/lib/types/shop';
 
 interface ShopState {
   shop: Shop | null;
@@ -113,6 +114,25 @@ export const useShopStore = create<ShopStore>()(
       partialize: (state) => ({
         shop: state.shop,
       }),
+      // Validate localStorage data on rehydration (MED-1)
+      onRehydrateStorage: () => (state) => {
+        if (state?.shop) {
+          const result = ShopSchema.safeParse(state.shop);
+          
+          if (!result.success) {
+            if (process.env.NODE_ENV === 'development') {
+              console.error(
+                'Shop data validation failed during hydration:',
+                result.error.issues
+              );
+            }
+            
+            // Clear corrupted data from localStorage
+            state.shop = null;
+            localStorage.removeItem('shop-storage');
+          }
+        }
+      },
     }
   )
 );

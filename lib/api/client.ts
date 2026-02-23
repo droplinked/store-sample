@@ -3,6 +3,7 @@
  * Handles authentication, error handling, and request/response logging
  */
 
+import { z } from 'zod';
 import { ApiError } from '@/lib/types';
 
 /**
@@ -205,6 +206,36 @@ export class ApiClient {
     options?: Omit<RequestOptions, 'method' | 'body'>
   ): Promise<T> {
     return this.request<T>(endpoint, { ...options, method: 'DELETE' });
+  }
+
+  /**
+   * Make a request with Zod schema validation (MED-3)
+   * Validates the API response against the provided Zod schema
+   */
+  async requestWithValidation<T>(
+    endpoint: string,
+    schema: z.ZodType<T>,
+    options?: RequestOptions
+  ): Promise<T> {
+    const data = await this.request<unknown>(endpoint, options);
+    
+    // Validate response data with Zod schema
+    const result = schema.safeParse(data);
+    
+    if (!result.success) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('API Response Validation Error:', result.error.issues);
+      }
+      
+      // Throw error with validation details
+      throw new ApiError(
+        422,
+        `API response validation failed: ${result.error.message}`,
+        { endpoint, issues: result.error.issues }
+      );
+    }
+    
+    return result.data;
   }
 }
 

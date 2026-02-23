@@ -4,7 +4,28 @@ import { NextRequest, NextResponse } from 'next/server';
 const API_BASE_URL = process.env.API_URL || '';
 const API_KEY = process.env.API_KEY || '';
 
+// Allowed API paths - blocks unauthorized backend enumeration (HIGH-1)
+const ALLOWED_PATHS = [
+  // Shop endpoints
+  /^\/shops\/v2\/public\/name\/.+$/,
+  // Product endpoints
+  /^\/product-v2\/public\/shop\/.+$/,
+  /^\/product-v2\/public\/by-slug\/.+$/,
+  // Cart endpoints
+  /^\/v2\/carts$/,
+  /^\/v2\/carts\/.+$/,
+  /^\/v2\/carts\/.+\/products$/,
+  /^\/v2\/carts\/.+\/products\/.+$/,
+];
+
 export const runtime = 'edge';
+
+/**
+ * Check if the requested path is in the allowlist
+ */
+function isPathAllowed(path: string): boolean {
+  return ALLOWED_PATHS.some((pattern) => pattern.test(path));
+}
 
 export async function GET(request: NextRequest) {
   return proxyRequest(request);
@@ -36,6 +57,14 @@ async function proxyRequest(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing path parameter' },
         { status: 400 }
+      );
+    }
+
+    // Validate path against allowlist (HIGH-1: Restrict Proxy Allowlist)
+    if (!isPathAllowed(path)) {
+      return NextResponse.json(
+        { error: 'Forbidden: Path not in allowlist' },
+        { status: 403 }
       );
     }
 
