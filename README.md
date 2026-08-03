@@ -16,7 +16,7 @@ npm install
 1. Go to the `https://droplinked.com/` 
 2. Open **Settings → Developers**
 3. Create a new API key
-   (Guide: `https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/getting-started` )
+   (Guide: `https://docs.droplinked.com/developers/getting-started` )
 
 ### 3. Configure Environment
 
@@ -75,7 +75,7 @@ API requests are authenticated server-side via the proxy route. The API key is:
 ### API Documentation
 
 Full API Reference:
-🔗 [Droplinked API Reference](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference)
+🔗 [Droplinked API Reference](https://docs.droplinked.com/api-reference/introduction)
 
 ---
 
@@ -85,8 +85,8 @@ This sample project is provided for demonstrating Droplinked API integration.
 
 ## 🔗 Resources
 
-* [Droplinked API Guide](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/)
-* [Droplinked API Reference](https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference)
+* [Droplinked API Guide](https://docs.droplinked.com/api-reference/introduction)
+* [Droplinked API Reference](https://docs.droplinked.com/api-reference/introduction)
 * [Droplinked Dashboard](https://droplinked.com/)
 
 ## 💬 Support
