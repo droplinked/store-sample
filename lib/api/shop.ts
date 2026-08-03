@@ -6,7 +6,7 @@
  * Provides functions to interact with Droplinked Shop API endpoints.
  * Handles shop configuration, settings, and metadata retrieval.
  * 
- * @see {@link https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference/shop API Documentation}
+ * @see {@link https://docs.droplinked.com/api-reference/introduction API Documentation}
  * 
  */
 

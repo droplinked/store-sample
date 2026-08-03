@@ -6,7 +6,7 @@
  * Provides functions to interact with Droplinked Product API endpoints.
  * Handles product browsing, searching, filtering, and detail retrieval.
  * 
- * @see {@link https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-api/api-reference/product API Documentation}
+ * @see {@link https://docs.droplinked.com/api-reference/introduction API Documentation}
  * 
  */
 
